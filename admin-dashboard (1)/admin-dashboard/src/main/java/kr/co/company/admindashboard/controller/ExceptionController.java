@@ -1,24 +1,28 @@
 package kr.co.company.admindashboard.controller;
 
-import kr.co.company.admindashboard.exception.CustomException;
+import kr.co.company.admindashboard.servise.ExceptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/exceptions")
 public class ExceptionController {
+    private final ExceptionService exceptionService;
 
-    @GetMapping("/error/test")
-    public ResponseEntity<String> triggerException() {
-        throw new CustomException("Custom error occurred", HttpStatus.BAD_REQUEST);
+    @Autowired
+    public ExceptionController(ExceptionService exceptionService) {
+        this.exceptionService = exceptionService;
     }
 
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<String> handleCustomException(CustomException ex) {
-        return ResponseEntity
-                .status(ex.getStatus())
-                .body(ex.getMessage());
+    @GetMapping("/test")
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void simulateException() {
+        exceptionService.recordException("TestException", "This is a simulated exception.");
     }
 }
+

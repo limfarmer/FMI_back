@@ -1,16 +1,26 @@
-package kr.co.company.admindashboard.service;
+package kr.co.company.admindashboard.servise;
 
-import kr.co.company.admindashboard.exception.CustomException;
+import kr.co.company.admindashboard.model.Exception;
+import kr.co.company.admindashboard.repository.ExceptionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class ExceptionService {
+    private final ExceptionRepository exceptionRepository;
 
-    public void testCustomException() {
-        throw new CustomException("This is a custom exception from service layer.");
+    @Autowired
+    public ExceptionService(ExceptionRepository exceptionRepository) {
+        this.exceptionRepository = exceptionRepository;
     }
 
-    public void testGeneralException() {
-        throw new RuntimeException("This is a general exception from service layer.");
+    public void recordException(String type, String message) {
+        Exception exception = new Exception();
+        exception.setType(type);
+        exception.setMessage(message);
+        exception.setTimestamp(LocalDateTime.now());
+        exceptionRepository.save(exception);
     }
 }
