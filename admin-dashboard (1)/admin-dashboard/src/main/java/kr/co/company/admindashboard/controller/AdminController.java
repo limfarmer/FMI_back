@@ -1,7 +1,10 @@
 package kr.co.company.admindashboard.controller;
 
 import kr.co.company.admindashboard.dao.AdminDao;
-import kr.co.company.admindashboard.vo.AdminVo;
+import kr.co.company.admindashboard.dao.ApiDao;
+import kr.co.company.admindashboard.dao.CustomerSupportDao;
+import kr.co.company.admindashboard.dao.UserDao;
+import kr.co.company.admindashboard.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,16 @@ import java.util.List;
 public class AdminController {
 
     private final AdminDao adminDao;
+    private final UserDao userDao;
+    private final ApiDao apiDao;
+    private final CustomerSupportDao customerSupportDao;
 
     @Autowired
-    public AdminController(AdminDao adminDao) {
+    public AdminController(AdminDao adminDao, UserDao userDao, ApiDao apiDao, CustomerSupportDao customerSupportDao) {
         this.adminDao = adminDao;
+        this.userDao = userDao;
+        this.apiDao = apiDao;
+        this.customerSupportDao = customerSupportDao;
     }
 
     @GetMapping("/{adminId}")
@@ -55,10 +64,43 @@ public class AdminController {
         return ResponseEntity.ok(adminList);
     }
 
-    @GetMapping("/dashboard")
-    public ResponseEntity<Void> redirectToDashboard() {
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .header("Location", "/admin/dashboard")
-                .build();
+    @GetMapping("/users")
+    public ResponseEntity<List<UserVo>> getAllUsers() {
+        List<UserVo> userList = userDao.findAll();
+        return ResponseEntity.ok(userList);
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<UserVo> getUserById(@PathVariable String userId) {
+        UserVo userVo = userDao.findByUserId(userId);
+        if (userVo != null) {
+            return ResponseEntity.ok(userVo);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/users/search-history/{userId}")
+    public ResponseEntity<List<SearchHistoryVo>> getUserSearchHistory(@PathVariable String userId) {
+        List<SearchHistoryVo> searchHistory = userDao.findSearchHistoryByUserId(userId);
+        return ResponseEntity.ok(searchHistory);
+    }
+
+    @GetMapping("/customer-support")
+    public ResponseEntity<List<CustomerSupportVo>> getAllCustomerSupportRequests() {
+        List<CustomerSupportVo> customerSupportList = customerSupportDao.findAll();
+        return ResponseEntity.ok(customerSupportList);
+    }
+
+    @GetMapping("/api-usage")
+    public ResponseEntity<ApiUsageVo> getApiUsage() {
+        ApiUsageVo apiUsage = apiDao.getApiUsage();
+        return ResponseEntity.ok(apiUsage);
+    }
+
+    @GetMapping("/api-logs")
+    public ResponseEntity<List<ApiLogVo>> getApiLogs() {
+        List<ApiLogVo> apiLogs = apiDao.getApiLogs();
+        return ResponseEntity.ok(apiLogs);
     }
 }
