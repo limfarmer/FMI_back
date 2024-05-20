@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -102,5 +104,26 @@ public class AdminController {
     public ResponseEntity<List<ApiLogVo>> getApiLogs() {
         List<ApiLogVo> apiLogs = apiDao.getApiLogs();
         return ResponseEntity.ok(apiLogs);
+    }
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<AdminVo> login(@RequestBody AdminVo adminVo, HttpServletRequest request) {
+        AdminVo admin = adminDao.findByEmail(adminVo.getEmail());
+        if (admin != null && admin.getPassword().equals(adminVo.getPassword())) {
+            HttpSession session = request.getSession();
+            session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
+            return ResponseEntity.ok(admin); // 로그인 성공 시 AdminVo 반환
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 인증 실패 시 401 상태 반환
+        }
+    }
+
+    @PostMapping("/auth/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+        return ResponseEntity.ok().build();
     }
 }

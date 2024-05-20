@@ -4,10 +4,12 @@ import kr.co.company.admindashboard.exception.CustomException;
 import kr.co.company.admindashboard.vo.ExceptionVo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+@CrossOrigin(origins = "http://localhost:3000")
 public class ExceptionController {
 
     @ExceptionHandler(CustomException.class)

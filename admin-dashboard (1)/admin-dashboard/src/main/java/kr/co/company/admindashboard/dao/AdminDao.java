@@ -25,7 +25,14 @@ public class AdminDao {
 
     public AdminVo findByEmail(String email) {
         String sql = "SELECT * FROM Admin WHERE email = ?";
-        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(AdminVo.class), email);
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{email}, BeanPropertyRowMapper.newInstance(AdminVo.class));
+        } catch (Exception e) {
+            // 예외 발생 시 로그 출력
+            System.err.println("Error finding admin by email: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void save(AdminVo adminVo) {

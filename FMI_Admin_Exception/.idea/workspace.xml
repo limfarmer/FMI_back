@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5ef23646-5105-4daa-b32a-59a3b84efd74" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/controller/ExceptionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/exception/CustomException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/main/AdminDashboardApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/model/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/model/Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/repository/AdminRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/repository/ExceptionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/servise/AdminService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/java/kr/co/company/admindashboard/servise/ExceptionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/resources/templates/admin/admin/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/resources/templates/admin/error/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin-dashboard (1)/admin-dashboard/src/main/resources/templates/admin/error/500.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2gROkRwqo2eBAY311MImM4Z54sH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/dev/mini/FMI_back/admin-dashboard (1)/admin-dashboard",
+    "onboarding.tips.debug.path": "D:/dev/mini/FMI_back/FMI_Admin_Exception/src/Main.java"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5ef23646-5105-4daa-b32a-59a3b84efd74" name="Changes" comment="" />
+      <created>1715657066046</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715657066046</updated>
+    </task>
+    <servers />
+  </component>
+</project>
