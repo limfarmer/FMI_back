@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -97,8 +98,13 @@ public class AdminController {
     @GetMapping("/api-usage")
     public ResponseEntity<ApiUsageVo> getApiUsage() {
         ApiUsageVo apiUsage = apiDao.getApiUsage();
+        // 예시 데이터 추가
+        apiUsage.setThisMonthData(Arrays.asList(10, 20, 30, 40));
+        apiUsage.setLastMonthData(Arrays.asList(15, 25, 35, 45));
+        apiUsage.setTwoMonthsAgoData(Arrays.asList(5, 15, 25, 35));
         return ResponseEntity.ok(apiUsage);
     }
+
 
     @GetMapping("/api-logs")
     public ResponseEntity<List<ApiLogVo>> getApiLogs() {

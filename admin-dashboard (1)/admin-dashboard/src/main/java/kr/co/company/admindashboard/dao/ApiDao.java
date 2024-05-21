@@ -28,4 +28,5 @@ public class ApiDao {
         String sql = "SELECT * FROM API_Logs";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(ApiLogVo.class));
     }
+
 }
