@@ -31,6 +31,21 @@ public class AdminController {
         this.apiDao = apiDao;
         this.customerSupportDao = customerSupportDao;
     }
+    @GetMapping("/users/deactivated")
+    public ResponseEntity<List<UserVo>> getDeactivatedUsers() {
+        List<UserVo> deactivatedUsers = userDao.findDeactivatedUsers();
+        return ResponseEntity.ok(deactivatedUsers);
+    }
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> deleteDeactivatedUser(@PathVariable String userId) {
+        boolean isDeleted = userDao.userDelete(userId);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 
     @GetMapping("/{adminId}")
     public ResponseEntity<AdminVo> getAdminById(@PathVariable String adminId) {
@@ -132,4 +147,11 @@ public class AdminController {
         }
         return ResponseEntity.ok().build();
     }
+    // 비활성화된 사용자 목록 조회
+    @GetMapping("/inactive-users")
+    public ResponseEntity<List<UserVo>> getInactiveUsers() {
+        List<UserVo> inactiveUsers = userDao.findUsersByStatus("INACTIVE");
+        return ResponseEntity.ok(inactiveUsers);
+    }
+
 }

@@ -33,4 +33,29 @@ public class UserDao {
         String sql = "SELECT * FROM Search_History WHERE user_id = ?";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SearchHistoryVo.class), userId);
     }
+
+    // 비활성화된 사용자 목록을 가져오는 메소드 추가
+    public List<UserVo> findUsersByStatus(String status) {
+        String sql = "SELECT * FROM Users WHERE STATUS = ?";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(UserVo.class), status);
+    }
+
+    // 비활성화된 사용자 목록을 가져오는 메소드 추가
+    public List<UserVo> findDeactivatedUsers() {
+        String sql = "SELECT * FROM Users WHERE STATUS = 'DEACTIVATED'";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(UserVo.class));
+    }
+
+    // 사용자 삭제 메소드 (기존 메소드 활용)
+    public boolean userDelete(String id) {
+        int result = 0;
+        String sql = "DELETE FROM Users WHERE user_id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+            result = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result == 1;
+    }
 }
