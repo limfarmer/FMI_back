@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "*") // CORS 설정 추가
+@CrossOrigin(origins = "http://localhost:3001") // CORS 설정 추가
 public class AdminController {
 
     private final AdminDao adminDao;
@@ -134,8 +135,29 @@ public class AdminController {
 
     @GetMapping("/deactivated-users")
     public ResponseEntity<List<UserVo>> getDeactivatedUsers() {
-        List<UserVo> userList = userDao.findUsersByStatus("DEACTIVATED");
-        return ResponseEntity.ok(userList);
+        try {
+            List<UserVo> userList = userDao.findDeactivatedUsers();
+            return ResponseEntity.ok(userList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PostMapping("/deactivated-users")
+    public ResponseEntity<Void> deactivateUser(@RequestBody Map<String, String> payload) {
+        try {
+            String userId = payload.get("userId");
+            if (userId != null && !userId.isEmpty()) {
+                userDao.updateUserStatus(userId, "DEACTIVATED");
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/users/{userId}")

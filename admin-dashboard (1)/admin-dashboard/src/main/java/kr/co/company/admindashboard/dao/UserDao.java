@@ -35,18 +35,18 @@ public class UserDao {
     }
 
     // 비활성화된 사용자 목록을 가져오는 메소드 추가
-    public List<UserVo> findUsersByStatus(String status) {
-        String sql = "SELECT * FROM Users WHERE STATUS = ?";
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(UserVo.class), status);
-    }
-
-    // 비활성화된 사용자 목록을 가져오는 메소드 추가
     public List<UserVo> findDeactivatedUsers() {
         String sql = "SELECT * FROM Users WHERE STATUS = 'DEACTIVATED'";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(UserVo.class));
     }
 
-    // 사용자 삭제 메소드 (기존 메소드 활용)
+    // 사용자 상태 업데이트 메소드 추가
+    public void updateUserStatus(String userId, String status) {
+        String sql = "UPDATE Users SET status = ? WHERE user_id = ?";
+        jdbcTemplate.update(sql, status, userId);
+    }
+
+    // 사용자 삭제 메소드
     public boolean userDelete(String id) {
         int result = 0;
         String sql = "DELETE FROM Users WHERE user_id = ?";
